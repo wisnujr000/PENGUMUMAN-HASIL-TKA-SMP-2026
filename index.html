@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Pengumuman Hasil TKA SMP 2026</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf4ff;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 8px solid #0d6efd;
+        }
+
+        h1 {
+            color: #0d6efd;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #0d6efd;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #084298;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 40px;
+        }
+
+        .footer img {
+            width: 200px;
+            border-radius: 10px;
+        }
+
+        .footer p {
+            color: #0d6efd;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Pengumuman Hasil TKA SMP 2026</h1>
+    <p>Masukkan Nomor Peserta</p>
+
+    <input type="text" id="nomor" placeholder="Contoh: 123456">
+    <br>
+    <button onclick="cekHasil()">Cek Hasil</button>
+
+    <div id="hasil"></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <img src="https://via.placeholder.com/300x100.png?text=Logo+Sekolah" alt="Logo Sekolah">
+    <p>© 2026 Panitia TKA SMP</p>
+</div>
+
+<script>
+    function cekHasil() {
+        let nomor = document.getElementById("nomor").value;
+        let hasil = document.getElementById("hasil");
+
+        let data = {
+            "123456": "LULUS 🎉",
+            "654321": "TIDAK LULUS ❌",
+            "111222": "LULUS 🎉"
+        };
+
+        if (data[nomor]) {
+            hasil.innerHTML = "Hasil: " + data[nomor];
+        } else {
+            hasil.innerHTML = "Nomor tidak ditemukan!";
+        }
+    }
+</script>
+
+</body>
+</html>
