@@ -53,11 +53,18 @@
             font-weight: bold;
         }
 
-        .footer {
-            margin-top: 30px;
+        /* FOTO BAWAH */
+        .footer-img {
+            margin-top: 40px;
         }
 
-        .footer p {
+        .footer-img img {
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        .footer-text {
+            margin-top: 10px;
             color: #0d6efd;
         }
     </style>
@@ -76,8 +83,10 @@
     <div id="hasil"></div>
 </div>
 
-<div class="footer">
-    <p>© 2026 Panitia TKA SMP</p>
+<!-- FOTO BAGIAN BAWAH -->
+<div class="footer-img">
+    <img src="https://via.placeholder.com/300x150.png?text=Pengumuman+TKA+2026" alt="Foto Pengumuman">
+    <div class="footer-text">© 2026 Panitia TKA SMP</div>
 </div>
 
 <script>
@@ -88,12 +97,19 @@
         if (nama.trim() === "") {
             hasil.innerHTML = "Silakan masukkan nama peserta!";
         } else {
-            let status = Math.random() > 0.3 ? "LULUS 🎉" : "TIDAK LULUS ❌";
+            let lulus = Math.random() > 0.5;
 
-            hasil.innerHTML = `
-                Nama Peserta: ${nama} <br>
-                Hasil: ${status}
-            `;
+            if (lulus) {
+                hasil.innerHTML = `
+                    Nama Peserta: ${nama} <br>
+                    <span style="color:green;">Hasil: LULUS 🎉</span>
+                `;
+            } else {
+                hasil.innerHTML = `
+                    Nama Peserta: ${nama} <br>
+                    <span style="color:red;">Hasil: TIDAK LULUS ❌</span>
+                `;
+            }
         }
     }
 </script>
