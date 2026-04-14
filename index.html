@@ -73,7 +73,7 @@
 
     <div id="hasil"></div>
 
-    <!-- FOTO AKAN MUNCUL DI SINI -->
+    <!-- FOTO MUNCUL DI SINI -->
     <div id="fotoHasil"></div>
 </div>
 
@@ -101,9 +101,11 @@
                 `;
             }
 
-            // FOTO MUNCUL SETELAH CEK
+            // FOTO ACAK 1 - 6
+            let randomFoto = Math.floor(Math.random() * 6) + 1;
+
             foto.innerHTML = `
-                <img src="foto.png" alt="Foto Pengumuman">
+                <img src="foto${randomFoto}.png" alt="Foto Pengumuman">
             `;
         }
     }
