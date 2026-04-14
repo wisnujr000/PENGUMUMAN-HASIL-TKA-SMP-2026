@@ -53,40 +53,12 @@
             font-weight: bold;
         }
 
-        /* FOOTER */
         .footer {
-            margin-top: 40px;
-        }
-
-        .footer img {
-            width: 180px;
-            border-radius: 10px;
+            margin-top: 30px;
         }
 
         .footer p {
             color: #0d6efd;
-            margin-top: 10px;
-        }
-
-        /* RANKING */
-        .ranking {
-            margin-top: 40px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .ranking h2 {
-            color: #0d6efd;
-        }
-
-        .ranking img {
-            width: 100%;
-            border-radius: 10px;
         }
     </style>
 </head>
@@ -95,42 +67,33 @@
 
 <div class="container">
     <h1>Pengumuman Hasil TKA SMP 2026</h1>
-    <p>Masukkan Nomor Peserta</p>
+    <p>Masukkan Nama Peserta</p>
 
-    <input type="text" id="nomor" placeholder="Contoh: 123456">
+    <input type="text" id="nama" placeholder="Contoh: Budi Santoso">
     <br>
     <button onclick="cekHasil()">Cek Hasil</button>
 
     <div id="hasil"></div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
-    <img src="logo.png" alt="Logo Sekolah">
     <p>© 2026 Panitia TKA SMP</p>
-</div>
-
-<!-- BAGAN RANKING -->
-<div class="ranking">
-    <h2>Bagan Ranking Siswa</h2>
-    <img src="ranking.png" alt="Ranking Siswa">
 </div>
 
 <script>
     function cekHasil() {
-        let nomor = document.getElementById("nomor").value;
+        let nama = document.getElementById("nama").value;
         let hasil = document.getElementById("hasil");
 
-        let data = {
-            "123456": "LULUS 🎉",
-            "654321": "TIDAK LULUS ❌",
-            "111222": "LULUS 🎉"
-        };
-
-        if (data[nomor]) {
-            hasil.innerHTML = "Hasil: " + data[nomor];
+        if (nama.trim() === "") {
+            hasil.innerHTML = "Silakan masukkan nama peserta!";
         } else {
-            hasil.innerHTML = "Nomor tidak ditemukan!";
+            let status = Math.random() > 0.3 ? "LULUS 🎉" : "TIDAK LULUS ❌";
+
+            hasil.innerHTML = `
+                Nama Peserta: ${nama} <br>
+                Hasil: ${status}
+            `;
         }
     }
 </script>
