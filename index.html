@@ -7,106 +7,149 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #eaf4ff;
-            text-align: center;
-            padding: 50px;
+            background: #eef3f8;
+            margin: 0;
         }
 
+        /* HEADER */
+        .header {
+            background: #0d6efd;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        /* BOX UTAMA */
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 400px;
-            margin: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-top: 8px solid #0d6efd;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
-        h1 {
+        h3 {
+            text-align: center;
             color: #0d6efd;
         }
 
         input {
+            width: 100%;
             padding: 10px;
-            width: 80%;
-            margin-top: 15px;
-            border-radius: 8px;
+            margin-top: 10px;
+            border-radius: 6px;
             border: 1px solid #ccc;
         }
 
         button {
+            width: 100%;
+            padding: 12px;
             margin-top: 15px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
             background: #0d6efd;
             color: white;
+            border: none;
+            border-radius: 6px;
             cursor: pointer;
         }
 
         button:hover {
-            background: #084298;
+            background: #0a58ca;
         }
 
         #hasil {
             margin-top: 20px;
-            font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f1f5f9;
         }
 
         #fotoHasil img {
-            width: 300px;
-            border-radius: 10px;
+            width: 100%;
             margin-top: 15px;
+            border-radius: 10px;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #666;
+            font-size: 13px;
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>Pengumuman Hasil TKA SMP 2026</h1>
-    <p>Masukkan Nama Peserta</p>
+<!-- HEADER -->
+<div class="header">
+    <h2>PENGUMUMAN HASIL TKA SMP 2026</h2>
+    <small>Kementerian Pendidikan, Kebudayaan, Riset dan Teknologi</small>
+</div>
 
-    <input type="text" id="nama" placeholder="Contoh: Budi Santoso">
-    <br>
-    <button onclick="cekHasil()">Cek Hasil</button>
+<!-- KONTEN -->
+<div class="container">
+    <h3>Cek Hasil Kelulusan</h3>
+
+    <input type="text" id="nama" placeholder="Masukkan Nama Peserta">
+    <button onclick="cekHasil()">CEK HASIL</button>
 
     <div id="hasil"></div>
-
-    <!-- FOTO MUNCUL DI SINI -->
     <div id="fotoHasil"></div>
 </div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Panitia TKA SMP
+</div>
+
+<!-- AUDIO -->
+<audio id="soundKlik" src="klik.mp3"></audio>
 
 <script>
     function cekHasil() {
         let nama = document.getElementById("nama").value;
         let hasil = document.getElementById("hasil");
         let foto = document.getElementById("fotoHasil");
+        let klik = document.getElementById("soundKlik");
+
+        // suara + getar
+        klik.play();
+        if (navigator.vibrate) navigator.vibrate(200);
 
         if (nama.trim() === "") {
             hasil.innerHTML = "Silakan masukkan nama peserta!";
             foto.innerHTML = "";
         } else {
-            let lulus = Math.random() > 0.5;
+            // loading
+            hasil.innerHTML = "⏳ Memproses data dari server pusat...";
+            foto.innerHTML = "";
 
-            if (lulus) {
-                hasil.innerHTML = `
-                    Nama Peserta: ${nama} <br>
-                    <span style="color:green;">Hasil: LULUS 🎉</span>
-                `;
-            } else {
-                hasil.innerHTML = `
-                    Nama Peserta: ${nama} <br>
-                    <span style="color:red;">Hasil: TIDAK LULUS ❌</span>
-                `;
-            }
+            setTimeout(() => {
+                let lulus = Math.random() > 0.5;
 
-            // FOTO ACAK 1 - 6
-            let randomFoto = Math.floor(Math.random() * 6) + 1;
+                if (lulus) {
+                    hasil.innerHTML = `
+                        <b>Nama:</b> ${nama} <br>
+                        <b>Status:</b> <span style="color:green;">LULUS</span>
+                    `;
+                } else {
+                    hasil.innerHTML = `
+                        <b>Nama:</b> ${nama} <br>
+                        <b>Status:</b> <span style="color:red;">TIDAK LULUS</span>
+                    `;
+                }
 
-            foto.innerHTML = `
-                <img src="foto${randomFoto}.png" alt="Foto Pengumuman">
-            `;
+                // foto random
+                let randomFoto = Math.floor(Math.random() * 6) + 1;
+                foto.innerHTML = `<img src="foto${randomFoto}.png">`;
+
+            }, 2000);
         }
     }
 </script>
