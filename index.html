@@ -53,19 +53,10 @@
             font-weight: bold;
         }
 
-        /* FOTO BAWAH */
-        .footer-img {
-            margin-top: 40px;
-        }
-
-        .footer-img img {
+        #fotoHasil img {
             width: 300px;
             border-radius: 10px;
-        }
-
-        .footer-text {
-            margin-top: 10px;
-            color: #0d6efd;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -81,21 +72,20 @@
     <button onclick="cekHasil()">Cek Hasil</button>
 
     <div id="hasil"></div>
-</div>
 
-<!-- FOTO BAGIAN BAWAH (PASTI MUNCUL) -->
-<div class="footer-img">
-    <img src="https://via.placeholder.com/300x150.png?text=Pengumuman+TKA+2026" alt="Foto Pengumuman">
-    <div class="footer-text">© 2026 Panitia TKA SMP</div>
+    <!-- FOTO AKAN MUNCUL DI SINI -->
+    <div id="fotoHasil"></div>
 </div>
 
 <script>
     function cekHasil() {
         let nama = document.getElementById("nama").value;
         let hasil = document.getElementById("hasil");
+        let foto = document.getElementById("fotoHasil");
 
         if (nama.trim() === "") {
             hasil.innerHTML = "Silakan masukkan nama peserta!";
+            foto.innerHTML = "";
         } else {
             let lulus = Math.random() > 0.5;
 
@@ -110,6 +100,11 @@
                     <span style="color:red;">Hasil: TIDAK LULUS ❌</span>
                 `;
             }
+
+            // FOTO MUNCUL SETELAH CEK
+            foto.innerHTML = `
+                <img src="foto.png" alt="Foto Pengumuman">
+            `;
         }
     }
 </script>
